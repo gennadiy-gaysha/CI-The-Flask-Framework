@@ -28,6 +28,11 @@ def contacts():
     return render_template('contacts.html')
 
 
+@app.route('/career')
+def career():
+    return render_template('/career.html')
+
+
 if __name__ == '__main__':
     app.run(
         host=os.environ.get('IP', '0.0.0.0'),
