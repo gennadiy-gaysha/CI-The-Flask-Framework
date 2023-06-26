@@ -61,9 +61,9 @@ def contacts():
     return render_template('contacts.html')
 
 
-@app.route('/career')
-def career():
-    return render_template('/career.html')
+@app.route('/careers')
+def careers():
+    return render_template('/careers.html')
 
 
 # The word 'main' wrapped in double-underscores (__main__) is the name of the default
