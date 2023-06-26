@@ -1,4 +1,16 @@
-# после инсталяции импортируем веб фреймворк Flask:
+# When we install a package, it plugs into the code that we've
+# already written.We can use as much or as little of that package's
+# functionality as you need.
+
+# A framework, however, inverts that control. In a framework, most of
+# the code is already written, and we have to plug your code into it.
+
+# Flask is a web-based micro framework than uses Python. Which means
+# that we don't get a lot of features out of the box, like we would with
+# a larger framework such as Django for instance. Flask doesn't come with
+# a default database engine, but the appeal of it, is its simplicity.
+
+# после инсталяции веб фреймворка Flask импортируем класс Flask:
 from flask import Flask
 
 # создаем экземпляр нашего приложения через конструктор класса Flask:

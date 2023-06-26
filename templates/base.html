@@ -3,18 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/clean-blog.min.css')}}" />
     <title>Hello Flask</title>
   </head>
   <body>
-    <nav>
+    <nav class="navbar">
       <ul>
+        <!--
+			In order for our navigation links to work, we need use the Jinja templating method of
+			url_for in order to call the appropriate functions. The format for that is: double curly
+			brackets (opening and closing), url_for, and then the name of our function goes inside of
+			single quotes wrapped inside of parentheses. -->
+        <!--
+			Flask is looking up our index() and about() views, and injecting the URL for each into
+			the respective href. -->
+        <!--
+			Sometimes though, when we're creating these URLs, we may get the name wrong. For instance,
+        if I were looking for the URL for 'home' here, instead of the URL for 'index', obviously my
+        'home' view does not exist in Python, and Flask will notify me of that error. If I go back
+        and refresh on the Home Page, I get an error. That error reads: "Could not build url for
+        endpoint 'home'. Did you mean 'about' instead?" -->
         <li><a href="{{url_for('index')}}">Home</a></li>
+        <!--
+			Double curly brackets contain an 'expression', which is outputting something either onto
+		  the screen, or in this case, into our href. -->
         <li><a href="{{url_for('about')}}">About</a></li>
         <li><a href="{{url_for('contacts')}}">Contacts</a></li>
         <li><a href="{{url_for('career')}}">Career</a></li>
       </ul>
     </nav>
 
+    <!-- We define a block, or an area, that we can inject content into from other pages.  -->
+    <!--
+	The curly bracket and percentage are for statements that control the flow of our template, such
+	as a for-loop, if-statement, or this block element. -->
     {% block content %} {%endblock%}
   </body>
 </html>
