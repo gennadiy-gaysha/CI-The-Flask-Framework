@@ -53,17 +53,17 @@ def index():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('about.html', page_title="About")
 
 
 @app.route('/contacts')
 def contacts():
-    return render_template('contacts.html')
+    return render_template('contacts.html', page_title="Contacts")
 
 
 @app.route('/careers')
 def careers():
-    return render_template('/careers.html')
+    return render_template('/careers.html', page_title="Careers")
 
 
 # The word 'main' wrapped in double-underscores (__main__) is the name of the default
