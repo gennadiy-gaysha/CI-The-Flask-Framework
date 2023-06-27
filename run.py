@@ -24,6 +24,11 @@ import os
 # should be at the same level as our run.py file.
 from flask import Flask, render_template
 
+# We want Python to import the data. To do that, we first need
+# to import the JSON library, because we're going to be passing
+# the data that's coming in as JSON.
+import json
+
 # Creating an instance of class Flask
 
 # The first argument of the Flask class, is the name of the
@@ -53,7 +58,18 @@ def index():
 
 @app.route('/about')
 def about():
-    return render_template('about.html', page_title="About", list_of_numbers=[1,2,3])
+   #  initializing empty list
+    data = []
+   #  We need to have Python open the JSON file in order to read it.
+   #  This is called a 'with' block.
+   # Python is opening the JSON file as "read-only", and assigning the contents
+   # of the file to a new variable we've created called json_data.
+    with open("data/company.json", "r") as json_data:
+       data = json.load(json_data)
+   #  This is assigning a new variable called 'company'
+   #  that will be sent through to the HTML template, which is
+   #  equal to the list of data it's loading from the JSON file.
+    return render_template('about.html', page_title="About", company=data)
 
 
 @app.route('/contacts')
