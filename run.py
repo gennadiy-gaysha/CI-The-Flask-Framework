@@ -22,7 +22,11 @@ import os
 # Where does Flask find this index.html file?
 # Flask expects it to be a directory called templates, which
 # should be at the same level as our run.py file.
-from flask import Flask, render_template
+
+# 'request' library from Flask.
+# Request is going to handle things like finding out what method
+# we used, and it will also contain our form object when we've posted it.
+from flask import Flask, render_template, request
 
 # We want Python to import the data. To do that, we first need
 # to import the JSON library, because we're going to be passing
@@ -84,8 +88,11 @@ def about_member(member_name):
         return render_template('member.html', member=member)
 
 
-@app.route('/contacts')
+@app.route('/contacts', methods = ["GET", "POST"])
 def contacts():
+    if request.method == 'POST':
+          print(request.form.get("name"))
+          print(request.form['email'])
     return render_template('contacts.html', page_title="Contacts")
 
 
