@@ -26,12 +26,13 @@ for expressions -->
 	{%if loop.index % 2 != 0%}
 
 	<div class="col-md-7">
-		<h3>{{loop.index}}. {{member.name}}</h3>
+		<h3><a href="/about/{{member.url}}" target="_blank">{{loop.index}}. {{member.name}}</a></h3>
 		<p>{{member.description}}</p>
 	</div>
 	<div class="col-md-5">
 		<img src="{{member.image_source}}" alt="" class="featurette-image image-responsive">
 	</div>
+
 
 	{%else%}
 
@@ -39,7 +40,10 @@ for expressions -->
 		<img src="{{member.image_source}}" alt="" class="featurette-image image-responsive">
 	</div>
 	<div class="col-md-7">
-		<h3>{{loop.index}}. {{member.name}}</h3>
+		<h3><a href="/about/{{member.url}}" target="_blank">{{loop.index}}. {{member.name}}</a></h3>
+		<!-- Just a few Jinja filters that we can use: -->
+		<!-- <h3><a href="/about/{{member.name|replace('&', 'and')|replace(' ', '-')|replace('Ó', 'O')|lower}}"
+				target="_blank">{{loop.index}}. {{member.name}}</a></h3> -->
 		<p>{{member.description}}</p>
 	</div>
 	{%endif%}
