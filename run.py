@@ -26,12 +26,20 @@ import os
 # 'request' library from Flask.
 # Request is going to handle things like finding out what method
 # we used, and it will also contain our form object when we've posted it.
-from flask import Flask, render_template, request
+
+# Sometimes we want to display a non-permanent message to the user,
+# something that only stays on screen until we refresh the page, or
+# go to a different one. These are called 'flashed messages' in Flask.
+from flask import Flask, render_template, request, flash
 
 # We want Python to import the data. To do that, we first need
 # to import the JSON library, because we're going to be passing
 # the data that's coming in as JSON.
 import json
+
+if os.path.exists('env.py'):
+      import env
+
 
 # Creating an instance of class Flask
 
@@ -41,6 +49,8 @@ import json
 # Python variable. Flask needs this so that it knows where
 # to look for templates and static files.
 app = Flask(__name__)
+# This line assigns a secret key to the Flask application.
+app.secret_key = os.environ.get('SECRET_KEY')
 
 # Decorator (uses pai-notation - @) - is the way of wrapping
 # functions.
@@ -91,8 +101,10 @@ def about_member(member_name):
 @app.route('/contacts', methods = ["GET", "POST"])
 def contacts():
     if request.method == 'POST':
-          print(request.form.get("name"))
-          print(request.form['email'])
+         #  print(request.form.get("name"))
+         #  print(request.form['email'])
+         flash("Thanks {}, we have received your message!".format(
+               request.form.get("name")))
     return render_template('contacts.html', page_title="Contacts")
 
 
