@@ -105,6 +105,7 @@ def contacts():
          #  print(request.form['email'])
          flash("Thanks {}, we have received your message!".format(
                request.form.get("name")))
+         flash("Please, check your email address: {}".format(request.form.get('email')))
     return render_template('contacts.html', page_title="Contacts")
 
 
